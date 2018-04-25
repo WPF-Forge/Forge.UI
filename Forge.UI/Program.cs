@@ -17,11 +17,17 @@ namespace Forge.UI
 
                 using (var streamReader = fileInfo.OpenText())
                 {
-                    var model = JsonConvert.DeserializeObject<ModelDescription>(streamReader.ReadToEnd());
-
-                    foreach (var jProperty in model.Properties.Properties())
+                    var model = JsonConvert.DeserializeObject<dynamic>(streamReader.ReadToEnd());
+                    var modelDescription = new ModelDescription();
+                    
+                    foreach (var jProperty in model.properties.Properties())
                     {
-                        Console.WriteLine(new PropertyDescription(jProperty));
+                        modelDescription.Properties.Add(new PropertyDescription(jProperty));
+                    }
+
+                    foreach (var jProperty in model.actions.Properties())
+                    {
+                        modelDescription.Actions.Add(new ActionDescription(jProperty));
                     }
                 }
             }

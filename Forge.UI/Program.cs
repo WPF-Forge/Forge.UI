@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using Forge.UI.Models;
+using Newtonsoft.Json;
 
 namespace Forge.UI
 {
@@ -6,7 +11,24 @@ namespace Forge.UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var currentDir = new DirectoryInfo("./");
+
+            foreach (var fileInfo in currentDir.GetFiles("M*.json"))
+            {
+                Console.WriteLine(fileInfo.Name);
+
+                using (var streamReader = fileInfo.OpenText())
+                {
+                    var model = JsonConvert.DeserializeObject<ModelDescription>(streamReader.ReadToEnd());
+
+                    foreach (var jProperty in model.Properties.Properties())
+                    {
+                        Console.WriteLine(new PropertyDescription(jProperty));
+                    }
+                }
+            }
+
+            Console.ReadLine();
         }
     }
 }

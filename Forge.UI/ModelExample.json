@@ -6,7 +6,9 @@
 		},
 		"lastName": {
 			"type": "string"
-		}
+		},
+		"age": 15,
+    "city": "NY" 
 	},
 	"actions": {
 		"reset": [

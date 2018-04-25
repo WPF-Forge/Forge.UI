@@ -1,0 +1,22 @@
+﻿{
+	"name": "Person",
+	"properties": {
+		"firstName": {
+			"type": "string"
+		},
+		"lastName": {
+			"type": "string"
+		}
+	},
+	"actions": {
+		"reset": [
+			[ "set", "firstName", "" ],
+			[ "set", "lastName", "" ]
+		]
+	},
+	"triggers": {
+		"afterSubmit": [
+			[ "dispatch", "reset" ]
+		]
+	}
+}

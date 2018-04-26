@@ -1,0 +1,3 @@
+[submodule "Forge.Forms"]
+	path = Forge.Forms
+	url = https://github.com/WPF-Forge/Forge.Forms

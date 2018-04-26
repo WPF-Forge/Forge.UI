@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using Forge.UI.Interfaces;
 using Newtonsoft.Json.Linq;
 
 namespace Forge.UI.Models
 {
-    public class ModelDescription
+    public class ModelDescription : IModelDescription
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public List<PropertyDescription> Properties { get; set; } = new List<PropertyDescription>();
+        public IEnumerable<IDescription> Properties { get; set; }
 
-        public List<ActionDescription> Actions { get; set; } = new List<ActionDescription>();
+        public IEnumerable<IDescription> Actions { get; set; }
 
-        public JObject Triggers { get; set; }
+        public IEnumerable<IDescription> Triggers { get; set; }
     }
 }
